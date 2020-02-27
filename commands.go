@@ -9,12 +9,12 @@ import (
 	"github.com/webmalc/it-stats-backend/logger"
 )
 
-// The main commands router
+// CommandRouter is the main commands router
 type CommandRouter struct {
 	logger logger.Interface
 }
 
-// Runs the router
+// Run the router
 func (r *CommandRouter) Run() {
 	max := 1
 	cmdPrint := &cobra.Command{
