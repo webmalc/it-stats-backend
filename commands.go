@@ -4,15 +4,18 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
+	"github.com/webmalc/it-stats-backend/logger"
 )
 
 // The main commands router
 type CommandRouter struct {
+	logger logger.Interface
 }
 
 // Runs the router
-func (obj *CommandRouter) Run() {
+func (r *CommandRouter) Run() {
 	max := 1
 	cmdPrint := &cobra.Command{
 		Use:   "print [string to print]",
@@ -40,11 +43,11 @@ func (obj *CommandRouter) Run() {
 	rootCmd.AddCommand(cmdPrint, cmdEcho)
 	err := rootCmd.Execute()
 	if err != nil {
-		fmt.Println(err)
+		r.logger.Error(errors.Wrap(err, "command router"))
 	}
 }
 
 // NewCommandRouter creates a new CommandRouter
-func NewCommandRouter() CommandRouter {
-	return CommandRouter{}
+func NewCommandRouter(log logger.Interface) CommandRouter {
+	return CommandRouter{logger: log}
 }

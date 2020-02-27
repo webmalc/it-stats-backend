@@ -2,7 +2,12 @@
 
 package main
 
+import (
+	"github.com/webmalc/it-stats-backend/logger"
+)
+
 func main() {
-	router := NewCommandRouter()
+	log := logger.NewLogger(true)
+	router := NewCommandRouter(log)
 	router.Run()
 }
