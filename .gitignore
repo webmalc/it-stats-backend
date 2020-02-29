@@ -15,7 +15,7 @@
 # vendor/
 
 # Project
-config/*.yml
+config/config.yml
 *.app
 
 logs/*

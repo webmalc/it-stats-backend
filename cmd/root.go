@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -43,7 +43,7 @@ func (r *CommandRouter) Run() {
 	rootCmd.AddCommand(cmdPrint, cmdEcho)
 	err := rootCmd.Execute()
 	if err != nil {
-		r.logger.Error(errors.Wrap(err, "command router"))
+		r.logger.Error(errors.Wrap(err, "root command"))
 	}
 }
 

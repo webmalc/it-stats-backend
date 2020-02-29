@@ -1,6 +1,9 @@
 package logger
 
 import (
+	"os"
+
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )
 
@@ -22,6 +25,7 @@ type Interface interface {
 // The Logger structure
 type Logger struct {
 	logger *logrus.Logger
+	config *Config
 }
 
 // Debug method
@@ -65,15 +69,25 @@ func (l *Logger) Fatalf(format string, args ...interface{}) {
 }
 
 // NewLogger returns a new logger object
-func NewLogger(isDebug bool) *Logger {
-	// TODO: set debug level and the output file
+func NewLogger() *Logger {
 	log := logrus.New()
+	config, err := NewConfig()
+	if err != nil {
+		panic(errors.Wrap(err, "logger"))
+	}
+	file, err := os.OpenFile(
+		config.FilePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600,
+	)
+	if err != nil {
+		panic(errors.Wrap(err, "logger"))
+	}
 	log.SetFormatter(&logrus.TextFormatter{
 		DisableColors: true,
 		FullTimestamp: true,
 	})
-	if isDebug {
+	log.Out = file
+	if config.IsDebug {
 		log.SetLevel(logrus.DebugLevel)
 	}
-	return &Logger{logger: log}
+	return &Logger{logger: log, config: config}
 }
