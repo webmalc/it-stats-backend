@@ -7,7 +7,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// Interface is the Logger interface
+// BaseLogger is the Logger interface
 type BaseLogger interface {
 	Debug(args ...interface{})
 	Debugf(format string, args ...interface{})
