@@ -28,3 +28,7 @@ jobs:
       run: |
         export PATH=$PATH:$(go env GOPATH)/bin
         make testall
+        bash <(curl -s https://codecov.io/bash)
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
