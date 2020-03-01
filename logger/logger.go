@@ -8,7 +8,7 @@ import (
 )
 
 // Interface is the Logger interface
-type Interface interface {
+type BaseLogger interface {
 	Debug(args ...interface{})
 	Debugf(format string, args ...interface{})
 
@@ -24,7 +24,7 @@ type Interface interface {
 
 // The Logger structure
 type Logger struct {
-	logger *logrus.Logger
+	logger BaseLogger
 	config *Config
 }
 

@@ -11,7 +11,7 @@ import (
 
 // CommandRouter is the main commands router
 type CommandRouter struct {
-	logger logger.Interface
+	logger logger.BaseLogger
 }
 
 // Run the router
@@ -48,6 +48,6 @@ func (r *CommandRouter) Run() {
 }
 
 // NewCommandRouter creates a new CommandRouter
-func NewCommandRouter(log logger.Interface) CommandRouter {
+func NewCommandRouter(log logger.BaseLogger) CommandRouter {
 	return CommandRouter{logger: log}
 }

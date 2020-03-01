@@ -13,7 +13,6 @@ func TestGetFilename(t *testing.T) {
 	assert.Equal(t, "config", getFilename())
 
 	os.Setenv("ITS_ENV", "test")
-	// defer os.Setenv("ITS_ENV", 'test')
 	assert.Equal(t, "config.test", getFilename())
 
 	os.Setenv("ITS_ENV", "prod")
@@ -28,7 +27,7 @@ func TestSetup(t *testing.T) {
 	os.Setenv("ITS_ENV", "test")
 	Setup()
 	path = viper.GetString("config_file_path")
-	assert.Equal(t, "logs/app.test.log", path)
+	assert.Contains(t, path, "logs/app.test.log")
 }
 
 // Should panic with the invalid environment variable

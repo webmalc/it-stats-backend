@@ -1,4 +1,5 @@
 # Go parameters
+.PHONY:  testall test testl testv coverage threshold lint run
 GOCMD=go
 GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
@@ -22,7 +23,7 @@ testv:
 coverage:
 	$(GOCOV)
 
-threshold:  
+threshold:
 	go-coverage-threshold -t 90
 
 testl: testv lint
@@ -33,7 +34,7 @@ clean:
 	$(GOCLEAN)
 	rm -f $(BINARY_NAME)
 
-lint: 
+lint:
 	golangci-lint run ./...
 run:
 	$(GORUN)

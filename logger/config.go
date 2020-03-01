@@ -14,6 +14,7 @@ type Config struct {
 
 // NewConfig returns the configuration object.
 func NewConfig() (*Config, error) {
+	baseDir := viper.GetString("base_dir")
 	config := &Config{
 		FilePath: viper.GetString("config_file_path"),
 		IsDebug:  viper.GetBool("config_is_debug"),
@@ -21,5 +22,6 @@ func NewConfig() (*Config, error) {
 	if config.FilePath == "" {
 		return nil, fmt.Errorf("config_file_path must be set")
 	}
+	config.FilePath = baseDir + config.FilePath
 	return config, nil
 }

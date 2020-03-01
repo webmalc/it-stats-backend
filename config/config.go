@@ -27,11 +27,13 @@ func Setup() {
 	if !ok {
 		panic("config: unable to determine the caller.")
 	}
+	baseDir := filepath.Dir(b)
 	viper.SetConfigName(getFilename())
 	viper.AddConfigPath(".")
-	viper.AddConfigPath(filepath.Dir(b))
+	viper.AddConfigPath(baseDir)
 	viper.AddConfigPath("/etc/itstats")
 	viper.AddConfigPath("$HOME/.itstats")
+	viper.Set("base_dir", filepath.Dir(baseDir)+"/")
 	viper.SetEnvPrefix(prefix)
 	viper.AutomaticEnv()
 
