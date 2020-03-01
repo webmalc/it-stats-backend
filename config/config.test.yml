@@ -1,0 +1,2 @@
+config_file_path: logs/app.test.log
+config_is_debug: true

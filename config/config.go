@@ -2,6 +2,8 @@ package config
 
 import (
 	"os"
+	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/spf13/viper"
@@ -19,10 +21,15 @@ func getFilename() string {
 	return fileName
 }
 
-// Init initializes the main configuration.
+// Setup initializes the main configuration.
 func Setup() {
+	_, b, _, ok := runtime.Caller(0)
+	if !ok {
+		panic("config: unable to determine the caller.")
+	}
 	viper.SetConfigName(getFilename())
-	viper.AddConfigPath("./config")
+	viper.AddConfigPath(".")
+	viper.AddConfigPath(filepath.Dir(b))
 	viper.AddConfigPath("/etc/itstats")
 	viper.AddConfigPath("$HOME/.itstats")
 	viper.SetEnvPrefix(prefix)
