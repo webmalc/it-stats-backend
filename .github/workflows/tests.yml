@@ -6,6 +6,15 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres
+        ports: ["5432:5432"]
+        env:
+          POSTGRES_DB: its_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+
     steps:
 
     - name: Set up Go 1.13
