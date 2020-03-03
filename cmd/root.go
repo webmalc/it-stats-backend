@@ -5,12 +5,16 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	"github.com/webmalc/it-stats-backend/logger"
 )
+
+// errorLogger logs errors
+type errorLogger interface {
+	Error(args ...interface{})
+}
 
 // CommandRouter is the main commands router.
 type CommandRouter struct {
-	logger logger.BaseLogger
+	logger errorLogger
 }
 
 // server runs server.
@@ -47,6 +51,6 @@ func (r *CommandRouter) Run() {
 }
 
 // NewCommandRouter creates a new CommandRouter
-func NewCommandRouter(log logger.BaseLogger) CommandRouter {
+func NewCommandRouter(log errorLogger) CommandRouter {
 	return CommandRouter{logger: log}
 }
