@@ -5,8 +5,8 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
-	"github.com/webmalc/it-stats-backend/common/db"
-	"github.com/webmalc/it-stats-backend/common/test"
+	"github.com/webmalc/it-stats-backend/internal/db"
+	"github.com/webmalc/it-stats-backend/internal/test"
 )
 
 func TestApp_Migrate(t *testing.T) {

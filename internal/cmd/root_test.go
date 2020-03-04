@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/webmalc/it-stats-backend/common/mocks"
-	"github.com/webmalc/it-stats-backend/common/test"
+	"github.com/webmalc/it-stats-backend/internal/mocks"
+	"github.com/webmalc/it-stats-backend/internal/test"
 )
 
 // Should run the root command and log an error.

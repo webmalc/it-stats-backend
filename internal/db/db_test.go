@@ -6,7 +6,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
-	"github.com/webmalc/it-stats-backend/common/mocks"
+	"github.com/webmalc/it-stats-backend/internal/mocks"
 )
 
 // Should create a new database connection.

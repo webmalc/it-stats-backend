@@ -2,7 +2,7 @@ package languages
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/webmalc/it-stats-backend/common/db"
+	"github.com/webmalc/it-stats-backend/internal/db"
 )
 
 // App is the application structure.

@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/webmalc/it-stats-backend/common/config"
+	"github.com/webmalc/it-stats-backend/internal/config"
 )
 
 // Setups the tests
