@@ -13,7 +13,7 @@ require (
 	github.com/jinzhu/gorm v1.9.12
 	github.com/microcosm-cc/bluemonday v1.0.2 // indirect
 	github.com/pkg/errors v0.9.1
-	github.com/qor/admin v0.0.0-20200303091841-155cebb265cb // indirect
+	github.com/qor/admin v0.0.0-20200303091841-155cebb265cb
 	github.com/qor/assetfs v0.0.0-20170713023933-ff57fdc13a14 // indirect
 	github.com/qor/media v0.0.0-20191022071353-19cf289e17d4 // indirect
 	github.com/qor/middlewares v0.0.0-20170822143614-781378b69454 // indirect
@@ -32,4 +32,5 @@ require (
 	github.com/theplant/htmltestingutils v0.0.0-20190423050759-0e06de7b6967 // indirect
 	github.com/theplant/testingutils v0.0.0-20190603093022-26d8b4d95c61 // indirect
 	github.com/yosssi/gohtml v0.0.0-20190915184251-7ff6f235ecaf // indirect
+	gopkg.in/go-playground/assert.v1 v1.2.1
 )

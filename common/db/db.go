@@ -4,12 +4,8 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" // according to the gorm docs
 	"github.com/pkg/errors"
+	"github.com/webmalc/it-stats-backend/common/app"
 )
-
-// Migratable do the database migrations.
-type Migratable interface {
-	Migrate()
-}
 
 // Database is the database connection.
 type Database struct {
@@ -17,8 +13,8 @@ type Database struct {
 }
 
 // RegisterApp register the applications.
-func (d *Database) RegisterApp(app Migratable) {
-	app.Migrate()
+func (d *Database) RegisterApp(a app.Migratable) {
+	a.Migrate()
 }
 
 // NewConnection returns a new database connection.

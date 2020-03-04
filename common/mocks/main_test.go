@@ -3,7 +3,7 @@ package mocks
 import (
 	"testing"
 
-	"github.com/webmalc/it-stats-backend/internal/test"
+	"github.com/webmalc/it-stats-backend/common/test"
 )
 
 // Setups the tests

@@ -3,16 +3,12 @@ package cmd
 import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
+	"github.com/webmalc/it-stats-backend/common/app"
 )
 
 // errorLogger logs errors.
 type errorLogger interface {
 	Error(args ...interface{})
-}
-
-// AddCommander adds the app cmd commands to the root command.
-type AddCommander interface {
-	AddCommands(rootCmd *cobra.Command)
 }
 
 // CommandRouter is the main commands router.
@@ -22,8 +18,8 @@ type CommandRouter struct {
 }
 
 // RegisterApp register the applications.
-func (r *CommandRouter) RegisterApp(app AddCommander) {
-	app.AddCommands(r.rootCmd)
+func (r *CommandRouter) RegisterApp(a app.CommandsAdder) {
+	a.AddCommands(r.rootCmd)
 }
 
 // Run the router.

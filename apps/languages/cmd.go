@@ -4,16 +4,12 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
+	"github.com/webmalc/it-stats-backend/common/app"
 )
-
-// AddCommander adds cmd commands to the root command.
-type addMultipleCommander interface {
-	AddCommand(...*cobra.Command)
-}
 
 // App is the application structure
 type commands struct {
-	rootCmd addMultipleCommander
+	rootCmd app.AdderMultipleCommands
 }
 
 // server runs server.
@@ -45,6 +41,6 @@ func (c *commands) addCommands() {
 }
 
 // newCommands returns a new commads object.
-func newCommands(rootCmd addMultipleCommander) *commands {
+func newCommands(rootCmd app.AdderMultipleCommands) *commands {
 	return &commands{rootCmd: rootCmd}
 }

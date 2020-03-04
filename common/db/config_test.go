@@ -1,27 +1,26 @@
-package logger
+package db
 
 import (
 	"testing"
 
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
-	"github.com/webmalc/it-stats-backend/internal/test"
+	"github.com/webmalc/it-stats-backend/common/test"
 )
 
-const filePathKey = "config_file_path"
+const databaseKey = "database_uri"
 
 // Should return the config object
 func TestNewConfig(t *testing.T) {
 	c, _ := NewConfig()
-	assert.Equal(t, true, c.IsDebug)
-	assert.Contains(t, c.FilePath, "logs/app.test.log")
+	assert.Contains(t, c.DatabaseURI, "dbname=its_test")
 }
 
 // Should return the error
 func TestNewConfigError(t *testing.T) {
-	o := viper.GetString(filePathKey)
-	viper.Set(filePathKey, "")
-	defer viper.Set(filePathKey, o)
+	o := viper.GetString(databaseKey)
+	viper.Set(databaseKey, "")
+	defer viper.Set(databaseKey, o)
 
 	_, err := NewConfig()
 	assert.Error(t, err)

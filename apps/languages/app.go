@@ -1,8 +1,8 @@
 package languages
 
 import (
-	"github.com/spf13/cobra"
-	"github.com/webmalc/it-stats-backend/internal/db"
+	"github.com/webmalc/it-stats-backend/common/app"
+	"github.com/webmalc/it-stats-backend/common/db"
 )
 
 // App is the application structure.
@@ -16,14 +16,16 @@ func (a *App) Migrate() {
 }
 
 // AddCommands adds the app cmd commands.
-func (a *App) AddCommands(rootCmd *cobra.Command) {
+func (a *App) AddCommands(rootCmd app.AdderMultipleCommands) {
 	cmd := newCommands(rootCmd)
 	cmd.addCommands()
 }
 
-// func (a *App) AddAdminPages() {
-// 	// TODO: implement
-// }
+// AddAdminResources adds the app admin resources commands.
+func (a *App) AddAdminResources(adm app.AdderAdminResources) {
+	adm.AddResource(&Language{})
+}
+
 // func (a *App) AddRoutes() {
 // 	// TODO: implement
 // }

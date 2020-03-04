@@ -15,6 +15,7 @@
 # vendor/
 
 # Project
+.history
 config/*.yml
 !config/config.dist.yml
 !config/config.test.yml

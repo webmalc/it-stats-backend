@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/webmalc/it-stats-backend/internal/mocks"
-	"github.com/webmalc/it-stats-backend/internal/test"
+	"github.com/webmalc/it-stats-backend/common/mocks"
+	"github.com/webmalc/it-stats-backend/common/test"
 )
 
 // Should run the root command and log an error.
@@ -33,7 +33,7 @@ func TestMain(m *testing.M) {
 
 // Should add the app commands.
 func TestCommandRouter_RegisterApp(t *testing.T) {
-	m := &mocks.AddCommander{}
+	m := &mocks.CommandsAdder{}
 	cr := NewCommandRouter(&mocks.BaseLogger{})
 	m.On("AddCommands", cr.rootCmd).Return(nil).Once()
 	cr.RegisterApp(m)
