@@ -3,14 +3,13 @@ package cmd
 import (
 	"testing"
 
-	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/webmalc/it-stats-backend/mocks"
 	"github.com/webmalc/it-stats-backend/test"
 )
 
-// Should run the root command and log an error
+// Should run the root command and log an error.
 func TestCommandRouter_Run(t *testing.T) {
 	m := &mocks.BaseLogger{}
 	cr := NewCommandRouter(m)
@@ -19,26 +18,24 @@ func TestCommandRouter_Run(t *testing.T) {
 	m.AssertExpectations(t)
 }
 
-// Should create a command router object
+// Should create a command router object.
 func TestNewCommandRouter(t *testing.T) {
 	m := &mocks.BaseLogger{}
 	cr := NewCommandRouter(m)
 	assert.Equal(t, m, cr.logger)
+	assert.NotNil(t, cr.rootCmd)
 }
 
-// Setups the tests
+// Setups the tests.
 func TestMain(m *testing.M) {
 	test.Run(m)
 }
 
-// Should run server
-func TestCommandRouter_server(t *testing.T) {
+// Should add the app commands.
+func TestCommandRouter_RegisterApp(t *testing.T) {
+	m := &mocks.AddCommander{}
 	cr := NewCommandRouter(&mocks.BaseLogger{})
-	cr.server(&cobra.Command{}, make([]string, 0))
-}
-
-// Should gets languages
-func TestCommandRouter_langs(t *testing.T) {
-	cr := NewCommandRouter(&mocks.BaseLogger{})
-	cr.langs(&cobra.Command{}, make([]string, 0))
+	m.On("AddCommands", cr.rootCmd).Return(nil).Once()
+	cr.RegisterApp(m)
+	m.AssertExpectations(t)
 }

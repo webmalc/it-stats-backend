@@ -6,12 +6,22 @@ import (
 	"github.com/pkg/errors"
 )
 
-// Database is the database connection
+// Migratable do the database migrations.
+type Migratable interface {
+	Migrate()
+}
+
+// Database is the database connection.
 type Database struct {
 	*gorm.DB
 }
 
-// NewConnection returns a new database connection
+// RegisterApp register the applications.
+func (d *Database) RegisterApp(app Migratable) {
+	app.Migrate()
+}
+
+// NewConnection returns a new database connection.
 func NewConnection() *Database {
 	config, err := NewConfig()
 	if err != nil {
