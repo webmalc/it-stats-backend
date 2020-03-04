@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/webmalc/it-stats-backend/mocks"
+	"github.com/webmalc/it-stats-backend/common/mocks"
 )
 
 func Test_commands_server(t *testing.T) {

@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"github.com/webmalc/it-stats-backend/test"
+	"github.com/webmalc/it-stats-backend/common/test"
 )
 
 // Setups the tests

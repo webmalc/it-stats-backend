@@ -4,10 +4,10 @@ package main
 
 import (
 	"github.com/webmalc/it-stats-backend/apps/languages"
-	"github.com/webmalc/it-stats-backend/cmd"
-	"github.com/webmalc/it-stats-backend/config"
-	"github.com/webmalc/it-stats-backend/db"
-	"github.com/webmalc/it-stats-backend/logger"
+	"github.com/webmalc/it-stats-backend/common/cmd"
+	"github.com/webmalc/it-stats-backend/common/config"
+	"github.com/webmalc/it-stats-backend/common/db"
+	"github.com/webmalc/it-stats-backend/common/logger"
 )
 
 func main() {

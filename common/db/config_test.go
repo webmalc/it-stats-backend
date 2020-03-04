@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
-	"github.com/webmalc/it-stats-backend/test"
+	"github.com/webmalc/it-stats-backend/common/test"
 )
 
 const databaseKey = "database_uri"
