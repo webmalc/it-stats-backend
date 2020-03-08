@@ -16,10 +16,11 @@
 
 # Project
 .history
+godepgraph.png
 config/*.yml
 !config/config.dist.yml
 !config/config.test.yml
 *.app
 
-logs/*
-!logs/.gitkeep
+common/logs/*
+!common/logs/.gitkeep

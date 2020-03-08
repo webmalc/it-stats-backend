@@ -1,8 +1,6 @@
 package db
 
 import (
-	"fmt"
-
 	"github.com/spf13/viper"
 )
 
@@ -11,13 +9,18 @@ type Config struct {
 	DatabaseURI string
 }
 
+// setDefaults sets the default values
+func setDefaults() {
+	d := "host=localhost port=5432 "
+	d += "user=postgres dbname=its password=postgres"
+	viper.SetDefault("database_uri", d)
+}
+
 // NewConfig returns the configuration object.
-func NewConfig() (*Config, error) {
+func NewConfig() *Config {
+	setDefaults()
 	config := &Config{
 		DatabaseURI: viper.GetString("database_uri"),
 	}
-	if config.DatabaseURI == "" {
-		return nil, fmt.Errorf("database_uri must be set")
-	}
-	return config, nil
+	return config
 }

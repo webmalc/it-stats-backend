@@ -9,7 +9,7 @@ import (
 )
 
 // Should return the config filename based on the environment variable.
-func TestGetFilename(t *testing.T) {
+func Test_getFilename(t *testing.T) {
 	assert.Equal(t, "config", getFilename())
 
 	os.Setenv("ITS_ENV", "test")
@@ -21,12 +21,12 @@ func TestGetFilename(t *testing.T) {
 
 // Should setup the main configuration.
 func TestSetup(t *testing.T) {
-	path := viper.GetString("config_file_path")
+	path := viper.GetString("log_path")
 	assert.Equal(t, "", path)
 
 	os.Setenv("ITS_ENV", "test")
 	Setup()
-	path = viper.GetString("config_file_path")
+	path = viper.GetString("log_path")
 	assert.Contains(t, path, "logs/app.test.log")
 }
 
@@ -34,4 +34,14 @@ func TestSetup(t *testing.T) {
 func TestSetupPanic(t *testing.T) {
 	os.Setenv("ITS_ENV", "invalid")
 	assert.Panics(t, Setup)
+}
+
+// Should set default values
+func Test_setDefaults(t *testing.T) {
+	viper.Reset()
+	assert.Empty(t, viper.GetString("log_path"))
+	assert.False(t, viper.IsSet("is_prod"))
+	setDefaults()
+	assert.Equal(t, "logs/app.log", viper.GetString("log_path"))
+	assert.True(t, viper.IsSet("is_prod"))
 }

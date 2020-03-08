@@ -3,10 +3,8 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/webmalc/it-stats-backend/apps/languages"
-	"github.com/webmalc/it-stats-backend/common/admin"
+	"github.com/webmalc/it-stats-backend/common/api"
 	"github.com/webmalc/it-stats-backend/common/cmd"
 	"github.com/webmalc/it-stats-backend/common/config"
 	"github.com/webmalc/it-stats-backend/common/db"
@@ -16,18 +14,15 @@ import (
 func main() {
 	config.Setup()
 	log := logger.NewLogger()
-	router := cmd.NewCommandRouter(log)
 	conn := db.NewConnection()
-	mux := http.NewServeMux()
-	adm := admin.NewAdmin(conn.DB, mux)
+	langApp := languages.NewApp(conn)
+	server := api.NewServer(conn, langApp)
+	cmdRouter := cmd.NewCommandRouter(log, server)
 	defer conn.Close()
 
 	// register the language app
-	langApp := languages.NewApp(conn)
 	conn.RegisterApp(langApp)
-	router.RegisterApp(langApp)
-	adm.RegisterApp(langApp)
+	cmdRouter.RegisterApp(langApp)
 
-	// Or http.ListenAndServe(":9000", mux)
-	router.Run()
+	cmdRouter.Run()
 }

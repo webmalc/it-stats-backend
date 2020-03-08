@@ -21,6 +21,12 @@ func getFilename() string {
 	return fileName
 }
 
+// setDefaults sets default values
+func setDefaults() {
+	viper.SetDefault("is_prod", false)
+	viper.SetDefault("log_path", "logs/app.log")
+}
+
 // Setup initializes the main configuration.
 func Setup() {
 	_, b, _, ok := runtime.Caller(0)
@@ -36,6 +42,7 @@ func Setup() {
 	viper.Set("base_dir", filepath.Dir(baseDir)+"/")
 	viper.SetEnvPrefix(prefix)
 	viper.AutomaticEnv()
+	setDefaults()
 
 	if err := viper.ReadInConfig(); err != nil {
 		panic(err)

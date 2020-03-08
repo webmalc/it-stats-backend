@@ -12,11 +12,6 @@ type commands struct {
 	rootCmd app.AdderMultipleCommands
 }
 
-// server runs server.
-func (c *commands) server(cmd *cobra.Command, args []string) {
-	fmt.Println("server")
-}
-
 // langs gets programming languages.
 func (c *commands) langs(cmd *cobra.Command, args []string) {
 	fmt.Println("langs")
@@ -24,13 +19,6 @@ func (c *commands) langs(cmd *cobra.Command, args []string) {
 
 // addCommands adds the app cmd commands.
 func (c *commands) addCommands() {
-	c.rootCmd.AddCommand(
-		&cobra.Command{
-			Use:   "server",
-			Short: "Run http server",
-			Run:   c.server,
-		},
-	)
 	c.rootCmd.AddCommand(
 		&cobra.Command{
 			Use:   "langs",

@@ -19,10 +19,7 @@ func (d *Database) RegisterApp(a app.Migratable) {
 
 // NewConnection returns a new database connection.
 func NewConnection() *Database {
-	config, err := NewConfig()
-	if err != nil {
-		panic(errors.Wrap(err, "database"))
-	}
+	config := NewConfig()
 	db, err := gorm.Open("postgres", config.DatabaseURI)
 	if err != nil {
 		panic(errors.Wrap(err, "database"))

@@ -7,6 +7,7 @@ GORUN=$(GOCMD) run .
 GOCOV=$(GOCMD) tool cover -html=coverage.out
 GOTEST=$(GOCMD) test -tags test
 GOGET=$(GOCMD) get
+GODEP=godepgraph -s -o github.com/webmalc/it-stats-backend github.com/webmalc/it-stats-backend | dot -Tpng -o godepgraph.png
 BINARY_NAME=it_stats.app
 
 all: build
@@ -19,6 +20,9 @@ test:
 
 testv:
 	GOENV=test $(GOTEST) -v ./... -coverprofile=coverage.out
+
+depgraph:
+	$(GODEP)
 
 coverage:
 	$(GOCOV)
@@ -39,4 +43,3 @@ lint:
 	golint ./...
 run:
 	$(GORUN)
-

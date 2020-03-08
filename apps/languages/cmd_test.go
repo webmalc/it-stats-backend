@@ -9,12 +9,6 @@ import (
 	"github.com/webmalc/it-stats-backend/common/mocks"
 )
 
-func Test_commands_server(t *testing.T) {
-	m := &mocks.AddMultipleCommander{}
-	cmd := newCommands(m)
-	cmd.server(&cobra.Command{}, make([]string, 0))
-}
-
 func Test_commands_langs(t *testing.T) {
 	m := &mocks.AddMultipleCommander{}
 	cmd := newCommands(m)
@@ -25,7 +19,7 @@ func Test_commands_langs(t *testing.T) {
 func Test_commands_addCommands(t *testing.T) {
 	m := &mocks.AddMultipleCommander{}
 	cmd := newCommands(m)
-	m.On("AddCommand", mock.Anything).Return(nil).Twice()
+	m.On("AddCommand", mock.Anything).Return(nil).Once()
 	cmd.addCommands()
 	m.AssertExpectations(t)
 }

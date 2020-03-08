@@ -1,4 +1,4 @@
-package db
+package api
 
 import (
 	"testing"
@@ -7,15 +7,20 @@ import (
 	"github.com/webmalc/it-stats-backend/common/test"
 )
 
-const databaseKey = "database_uri"
+// Should return the API URL
+func TestConfig_GetURL(t *testing.T) {
+	c := NewConfig()
+	assert.Equal(t, "localhost:8080", c.GetURL())
+}
 
 // Should return the config object
 func TestNewConfig(t *testing.T) {
 	c := NewConfig()
-	assert.Contains(t, c.DatabaseURI, "dbname=its_test")
+	assert.False(t, c.IsProd)
+	assert.Equal(t, "localhost", c.Host)
+	assert.Equal(t, uint(8080), c.Port)
 }
 
-// Setups the tests
 func TestMain(m *testing.M) {
 	test.Run(m)
 }

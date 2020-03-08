@@ -1,8 +1,6 @@
 package logger
 
 import (
-	"fmt"
-
 	"github.com/spf13/viper"
 )
 
@@ -13,15 +11,10 @@ type Config struct {
 }
 
 // NewConfig returns the configuration object.
-func NewConfig() (*Config, error) {
-	baseDir := viper.GetString("base_dir")
+func NewConfig() *Config {
 	config := &Config{
-		FilePath: viper.GetString("config_file_path"),
-		IsDebug:  viper.GetBool("config_is_debug"),
+		FilePath: viper.GetString("base_dir") + viper.GetString("log_path"),
+		IsDebug:  !viper.GetBool("is_prod"),
 	}
-	if config.FilePath == "" {
-		return nil, fmt.Errorf("config_file_path must be set")
-	}
-	config.FilePath = baseDir + config.FilePath
-	return config, nil
+	return config
 }

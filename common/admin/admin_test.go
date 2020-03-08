@@ -14,7 +14,7 @@ import (
 func TestAdmin_RegisterApp(t *testing.T) {
 	conn := db.NewConnection()
 	defer conn.Close()
-	a := NewAdmin(conn.DB, http.NewServeMux())
+	a := NewAdmin(conn.DB)
 	m := &mocks.ResourcesAdder{}
 	m.On("AddAdminResources", a.admin).Return(nil).Once()
 	a.RegisterApp(m)
@@ -25,8 +25,19 @@ func TestAdmin_RegisterApp(t *testing.T) {
 func TestNewAdmin(t *testing.T) {
 	conn := db.NewConnection()
 	defer conn.Close()
-	a := NewAdmin(conn.DB, http.NewServeMux())
+	a := NewAdmin(conn.DB)
 	assert.NotNil(t, a.admin)
+	assert.Equal(t, "it-stats", a.admin.AdminConfig.SiteName)
+}
+
+// Should mounts the admin to the mux
+func TestAdmin_MountTo(t *testing.T) {
+	conn := db.NewConnection()
+	defer conn.Close()
+	a := NewAdmin(conn.DB)
+	assert.NotPanics(t, func() {
+		a.MountTo("/admin", http.NewServeMux())
+	})
 }
 
 // Setups the tests.

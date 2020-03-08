@@ -1,3 +1,5 @@
-config_file_path: logs/app.log
-config_is_debug: false
+log_path: logs/app.log
+is_prod: true
 database_uri: host=localhost port=5432 user=postgres dbname=its password=postgres
+api_host: localhost
+api_port: 8080

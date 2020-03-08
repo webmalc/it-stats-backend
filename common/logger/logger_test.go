@@ -9,7 +9,7 @@ import (
 )
 
 func newMockLogger() (*Logger, *mocks.BaseLogger) {
-	c, _ := NewConfig()
+	c := NewConfig()
 	m := &mocks.BaseLogger{}
 	return &Logger{logger: m, config: c}, m
 }

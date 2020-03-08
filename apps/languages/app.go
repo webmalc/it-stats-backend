@@ -1,13 +1,17 @@
 package languages
 
 import (
+	"github.com/jinzhu/gorm"
 	"github.com/webmalc/it-stats-backend/common/app"
-	"github.com/webmalc/it-stats-backend/common/db"
 )
+
+type autoMigrater interface {
+	AutoMigrate(values ...interface{}) *gorm.DB
+}
 
 // App is the application structure.
 type App struct {
-	db *db.Database
+	db autoMigrater
 }
 
 // Migrate does the app migrations.
@@ -26,11 +30,7 @@ func (a *App) AddAdminResources(adm app.AdderAdminResources) {
 	adm.AddResource(&Language{})
 }
 
-// func (a *App) AddRoutes() {
-// 	// TODO: implement
-// }
-
 // NewApp returns a new app object.
-func NewApp(conn *db.Database) *App {
+func NewApp(conn autoMigrater) *App {
 	return &App{db: conn}
 }

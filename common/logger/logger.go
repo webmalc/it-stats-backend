@@ -71,10 +71,7 @@ func (l *Logger) Fatalf(format string, args ...interface{}) {
 // NewLogger returns a new logger object
 func NewLogger() *Logger {
 	log := logrus.New()
-	config, err := NewConfig()
-	if err != nil {
-		panic(errors.Wrap(err, "logger"))
-	}
+	config := NewConfig()
 	file, err := os.OpenFile(
 		config.FilePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600,
 	)
