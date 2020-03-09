@@ -4,6 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" // according to the gorm docs
 	"github.com/pkg/errors"
+	"github.com/qor/validations"
 	"github.com/webmalc/it-stats-backend/common/app"
 )
 
@@ -24,5 +25,6 @@ func NewConnection() *Database {
 	if err != nil {
 		panic(errors.Wrap(err, "database"))
 	}
+	validations.RegisterCallbacks(db)
 	return &Database{db}
 }

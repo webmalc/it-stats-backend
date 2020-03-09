@@ -13,17 +13,15 @@ type adminRegister struct {
 func (a *adminRegister) Register(adm app.AdderAdminResources) {
 	langAdmin := adm.AddResource(&Language{})
 	a.RegisterBase(langAdmin)
+	sources := GetLanguageSources()
 
 	langAdmin.Meta(&admin.Meta{
-		Name: "Source",
-		Config: &admin.SelectOneConfig{
-			Collection: []string{"pypl", "tiobe"}},
+		Name:   "Source",
+		Config: &admin.SelectOneConfig{Collection: sources},
 	})
 	langAdmin.Filter(&admin.Filter{
-		Name: "Source",
-		Config: &admin.SelectOneConfig{
-			Collection: []string{"pypl", "tiobe"},
-		},
+		Name:   "Source",
+		Config: &admin.SelectOneConfig{Collection: sources},
 	})
 }
 

@@ -12,6 +12,8 @@ github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496 h1:zV3ejI06
 github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496/go.mod h1:oGkLhpf+kjZl6xBf758TQhh5XrAeiJv/7FRz/2spLIg=
 github.com/aws/aws-sdk-go v1.29.19 h1:+jifYixffn6kzWygtGWFWQMv0tDGyISZHNwugF9V2sE=
 github.com/aws/aws-sdk-go v1.29.19/go.mod h1:1KvfttTE3SPKMpo8g2c6jL3ZKfXtFvKscTgahTma5Xg=
+github.com/aws/aws-sdk-go v1.29.20 h1:vAHJhARpdbdeJstTVaugeHgvVj5lBnfz3blbbD24gfo=
+github.com/aws/aws-sdk-go v1.29.20/go.mod h1:1KvfttTE3SPKMpo8g2c6jL3ZKfXtFvKscTgahTma5Xg=
 github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24TaqPxmxbtue+5NUziq4I4S80YR8gNf3Q=
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
 github.com/cespare/xxhash v1.1.0/go.mod h1:XrSqR1VqqWfGrhpAt58auRo0WTKS1nRRg3ghfAqPWnc=
@@ -189,6 +191,8 @@ github.com/qor/admin v0.0.0-20200303091841-155cebb265cb h1:VQrz9ctoV3AfHF3JfMjr1
 github.com/qor/admin v0.0.0-20200303091841-155cebb265cb/go.mod h1:Sm5kX+Hkq1LKiFyqZJLnncUg8dWM/2roOEiy98NOUzA=
 github.com/qor/assetfs v0.0.0-20170713023933-ff57fdc13a14 h1:JRpyNNSRAkwNHd4WgyPcalTAhxOCh3eFNMoQkxWhjSw=
 github.com/qor/assetfs v0.0.0-20170713023933-ff57fdc13a14/go.mod h1:GZSCP3jIneuPsav3pXmpmJwz9ES+Fuq4ZPOUC3wwckQ=
+github.com/qor/log v0.0.0-20180202015346-3606b757e8e4 h1:0I32bBkmAcwPFXfpfAsLo/ZtyD8lOVnZGz2pLS0SLXI=
+github.com/qor/log v0.0.0-20180202015346-3606b757e8e4/go.mod h1:kYVb5zggo+b8MSFpQHO2ocpLiGoSbvFgnY851hnk1bc=
 github.com/qor/media v0.0.0-20191022071353-19cf289e17d4 h1:hNxWeC5ixnBYYEhWni/teMtVctq6RZ1slGZlfxKn4ZA=
 github.com/qor/media v0.0.0-20191022071353-19cf289e17d4/go.mod h1:hzx9cTt5MpROMVIhwNhRJETc7e3a1J4bLNYflkcQ1wk=
 github.com/qor/middlewares v0.0.0-20170822143614-781378b69454 h1:+WCc1IigwWpWBxMFsmLUsIF230TakGHstDajd8aKDAc=

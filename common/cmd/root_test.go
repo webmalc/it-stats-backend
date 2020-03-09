@@ -27,11 +27,6 @@ func TestNewCommandRouter(t *testing.T) {
 	assert.NotNil(t, cr.rootCmd)
 }
 
-// Setups the tests.
-func TestMain(m *testing.M) {
-	test.Run(m)
-}
-
 // Should add the app commands.
 func TestCommandRouter_RegisterApp(t *testing.T) {
 	m := &mocks.CommandsAdder{}
@@ -48,4 +43,9 @@ func TestCommandRouter_server(t *testing.T) {
 	m.On("Init").Return(nil).Once()
 	cr.server(&cobra.Command{}, make([]string, 0))
 	m.AssertExpectations(t)
+}
+
+// Setups the tests.
+func TestMain(m *testing.M) {
+	test.Run(m)
 }

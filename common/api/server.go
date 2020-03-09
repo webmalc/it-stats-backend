@@ -8,6 +8,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
+	"github.com/qor/log"
 	"github.com/webmalc/it-stats-backend/common/admin"
 	"github.com/webmalc/it-stats-backend/common/app"
 	"github.com/webmalc/it-stats-backend/common/db"
@@ -67,6 +68,7 @@ func (s *Server) initServer() {
 	s.router = gin.Default()
 	s.admin = admin.NewAdmin(s.db.DB)
 	s.router.Use(s.getCors())
+	s.router.Use(log.Logger(s.config.LogPath, 90))
 }
 
 // Init initializes the server and the admin

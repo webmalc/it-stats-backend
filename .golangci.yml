@@ -95,6 +95,9 @@ issues:
         - gomnd
         - dupl
         - gocritic
+    - linters:
+        - lll
+      source: "`gorm.*"
 
 # run:
 #   skip-dirs:
