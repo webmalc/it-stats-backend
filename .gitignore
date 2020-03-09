@@ -15,6 +15,7 @@
 # vendor/
 
 # Project
+.vscode
 .history
 godepgraph.png
 config/*.yml

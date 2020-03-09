@@ -11,7 +11,8 @@ type autoMigrater interface {
 
 // App is the application structure.
 type App struct {
-	db autoMigrater
+	db    autoMigrater
+	admin app.AdminResourcesRegister
 }
 
 // Migrate does the app migrations.
@@ -27,10 +28,10 @@ func (a *App) AddCommands(rootCmd app.AdderMultipleCommands) {
 
 // AddAdminResources adds the app admin resources commands.
 func (a *App) AddAdminResources(adm app.AdderAdminResources) {
-	adm.AddResource(&Language{})
+	a.admin.Register(adm)
 }
 
 // NewApp returns a new app object.
 func NewApp(conn autoMigrater) *App {
-	return &App{db: conn}
+	return &App{db: conn, admin: newAdmin()}
 }

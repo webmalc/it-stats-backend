@@ -2,8 +2,11 @@ package admin
 
 import (
 	"net/http"
+	"net/url"
 	"testing"
 
+	"github.com/qor/admin"
+	"github.com/qor/qor"
 	"github.com/stretchr/testify/assert"
 	"github.com/webmalc/it-stats-backend/common/db"
 	"github.com/webmalc/it-stats-backend/common/mocks"
@@ -38,6 +41,17 @@ func TestAdmin_MountTo(t *testing.T) {
 	assert.NotPanics(t, func() {
 		a.MountTo("/admin", http.NewServeMux())
 	})
+}
+
+// Should redirect to the main page
+func Test_dashboardRedirect(t *testing.T) {
+	f := func(w http.ResponseWriter, r *http.Request) {
+		c := &admin.Context{Context: &qor.Context{
+			Writer: w, Request: r,
+		}}
+		dashboardRedirect(c)
+	}
+	assert.HTTPRedirect(t, f, "GET", "/", url.Values{})
 }
 
 // Setups the tests.

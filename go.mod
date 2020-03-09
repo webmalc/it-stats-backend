@@ -22,7 +22,7 @@ require (
 	github.com/qor/media v0.0.0-20191022071353-19cf289e17d4 // indirect
 	github.com/qor/middlewares v0.0.0-20170822143614-781378b69454 // indirect
 	github.com/qor/oss v0.0.0-20191031055114-aef9ba66bf76 // indirect
-	github.com/qor/qor v0.0.0-20200224122013-457d2e3f50e1 // indirect
+	github.com/qor/qor v0.0.0-20200224122013-457d2e3f50e1
 	github.com/qor/responder v0.0.0-20171031032654-b6def473574f // indirect
 	github.com/qor/roles v0.0.0-20171127035124-d6375609fe3e // indirect
 	github.com/qor/serializable_meta v0.0.0-20180510060738-5fd8542db417 // indirect
@@ -31,7 +31,7 @@ require (
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.6
 	github.com/spf13/viper v1.6.2
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.5.1
 	github.com/theplant/cldr v0.0.0-20190423050709-9f76f7ce4ee8 // indirect
 	github.com/theplant/htmltestingutils v0.0.0-20190423050759-0e06de7b6967 // indirect
 	github.com/theplant/testingutils v0.0.0-20190603093022-26d8b4d95c61 // indirect

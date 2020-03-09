@@ -5,7 +5,6 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 	"github.com/webmalc/it-stats-backend/common/db"
 	"github.com/webmalc/it-stats-backend/common/mocks"
 	"github.com/webmalc/it-stats-backend/common/test"
@@ -36,14 +35,16 @@ func TestApp_AddCommands(t *testing.T) {
 
 // Should add the app admin resources.
 func TestApp_AddAdminResources(t *testing.T) {
+	adm := &mocks.AdminResourcesRegister{}
+	m := &mocks.AdderAdminResources{}
 	conn := db.NewConnection()
 	defer conn.Close()
 	app := NewApp(conn)
+	app.admin = adm
 
-	m := &mocks.AdderAdminResources{}
-	m.On("AddResource", mock.Anything).Return(nil).Once()
+	adm.On("Register", m).Return(nil).Once()
 	app.AddAdminResources(m)
-	m.AssertExpectations(t)
+	adm.AssertExpectations(t)
 }
 
 func TestNewApp(t *testing.T) {
@@ -51,6 +52,7 @@ func TestNewApp(t *testing.T) {
 	defer conn.Close()
 	app := NewApp(conn)
 	assert.Equal(t, conn, app.db)
+	assert.NotNil(t, app.admin)
 }
 
 // Setups the tests.
