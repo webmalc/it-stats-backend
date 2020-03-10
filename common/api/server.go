@@ -9,9 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"github.com/qor/log"
-	"github.com/webmalc/it-stats-backend/common/admin"
 	"github.com/webmalc/it-stats-backend/common/app"
-	"github.com/webmalc/it-stats-backend/common/db"
 )
 
 // AdminRegister is the app register interface
@@ -26,7 +24,6 @@ type Server struct {
 	router *gin.Engine
 	apps   []app.ResourcesAdder
 	admin  AdminRegister
-	db     *db.Database
 }
 
 // GetCors gets the CORS handler
@@ -66,7 +63,6 @@ func (s *Server) initServer() {
 	}
 	gin.DefaultWriter = s.getWriter()
 	s.router = gin.Default()
-	s.admin = admin.NewAdmin(s.db.DB)
 	s.router.Use(s.getCors())
 	s.router.Use(log.Logger(s.config.LogPath, 90))
 }
@@ -84,9 +80,9 @@ func (s *Server) Run() {
 }
 
 // NewServer returns a new admin object.
-func NewServer(conn *db.Database, apps ...app.ResourcesAdder) *Server {
+func NewServer(admin AdminRegister, apps ...app.ResourcesAdder) *Server {
 	return &Server{
-		db:     conn,
+		admin:  admin,
 		apps:   apps,
 		config: NewConfig(),
 	}

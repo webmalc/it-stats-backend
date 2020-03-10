@@ -4,6 +4,7 @@ package main
 
 import (
 	"github.com/webmalc/it-stats-backend/apps/languages"
+	"github.com/webmalc/it-stats-backend/common/admin"
 	"github.com/webmalc/it-stats-backend/common/api"
 	"github.com/webmalc/it-stats-backend/common/cmd"
 	"github.com/webmalc/it-stats-backend/common/config"
@@ -16,7 +17,8 @@ func main() {
 	log := logger.NewLogger()
 	conn := db.NewConnection()
 	langApp := languages.NewApp(conn)
-	server := api.NewServer(conn, langApp)
+	adm := admin.NewAdmin(conn.DB)
+	server := api.NewServer(adm, langApp)
 	cmdRouter := cmd.NewCommandRouter(log, server)
 	defer conn.Close()
 
