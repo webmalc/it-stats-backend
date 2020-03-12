@@ -41,7 +41,7 @@ func Test_setDefaults(t *testing.T) {
 	viper.Reset()
 	assert.Empty(t, viper.GetString("log_path"))
 	assert.False(t, viper.IsSet("is_prod"))
-	setDefaults()
+	setDefaults("test")
 	assert.Equal(t, "logs/app.log", viper.GetString("log_path"))
 	assert.True(t, viper.IsSet("is_prod"))
 }

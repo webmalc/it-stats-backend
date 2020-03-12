@@ -22,7 +22,7 @@ jobs:
       with:
         go-version: 1.13
       id: go
-      
+
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
@@ -46,7 +46,7 @@ jobs:
         bash <(curl -s https://codecov.io/bash)
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    
+
     - name: Codebeat
       run: |
         codeclimate-test-reporter < coverage.out

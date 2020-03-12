@@ -22,9 +22,24 @@ func getFilename() string {
 }
 
 // setDefaults sets default values
-func setDefaults() {
+func setDefaults(baseDir string) {
+	viper.Set("base_dir", filepath.Dir(baseDir)+"/")
 	viper.SetDefault("is_prod", false)
 	viper.SetDefault("log_path", "logs/app.log")
+}
+
+// setPaths set paths
+func setPaths(baseDir string) {
+	viper.AddConfigPath(".")
+	viper.AddConfigPath(baseDir)
+	viper.AddConfigPath("/etc/itstats")
+	viper.AddConfigPath("$HOME/.itstats")
+}
+
+// setEnv sets the environment
+func setEnv() {
+	viper.SetEnvPrefix(prefix)
+	viper.AutomaticEnv()
 }
 
 // Setup initializes the main configuration.
@@ -35,14 +50,9 @@ func Setup() {
 	}
 	baseDir := filepath.Dir(b)
 	viper.SetConfigName(getFilename())
-	viper.AddConfigPath(".")
-	viper.AddConfigPath(baseDir)
-	viper.AddConfigPath("/etc/itstats")
-	viper.AddConfigPath("$HOME/.itstats")
-	viper.Set("base_dir", filepath.Dir(baseDir)+"/")
-	viper.SetEnvPrefix(prefix)
-	viper.AutomaticEnv()
-	setDefaults()
+	setPaths(baseDir)
+	setEnv()
+	setDefaults(baseDir)
 
 	if err := viper.ReadInConfig(); err != nil {
 		panic(err)
