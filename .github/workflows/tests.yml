@@ -27,7 +27,7 @@ jobs:
       run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.23.3
           sudo cp bin/golangci-lint /usr/local/bin/golangci-lint
-          go get -u github.com/jokeyrhyme/go-coverage-threshold/cmd/go-coverage-threshold
+          go get -u https://github.com/klmitch/overcover
           go get -u golang.org/x/lint/golint
 
     - name: Check out code into the Go module directory

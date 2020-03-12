@@ -5,7 +5,7 @@ go 1.13
 require (
 	github.com/andybalholm/cascadia v1.1.0 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20200108200545-475eaeb16496
-	github.com/aws/aws-sdk-go v1.29.20 // indirect
+	github.com/aws/aws-sdk-go v1.29.22 // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/gin-contrib/cors v1.3.1

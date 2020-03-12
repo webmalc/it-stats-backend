@@ -3,4 +3,5 @@ ignore:
     - "common/api/mocks"
     - "common/cmd/mocks"
     - "common/db/mocks"
+    - "common/logger/mocks"
     - "apps/languages/mocks"

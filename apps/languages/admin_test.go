@@ -5,8 +5,9 @@ import (
 
 	"github.com/qor/admin"
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+	"github.com/webmalc/it-stats-backend/apps/languages/mocks"
 	"github.com/webmalc/it-stats-backend/common/db"
-	"github.com/webmalc/it-stats-backend/common/mocks"
 )
 
 // Should register admin resources.
@@ -16,7 +17,8 @@ func Test_adminRegister_Register(t *testing.T) {
 	m := &mocks.AdderAdminResources{}
 	a := newAdmin()
 
-	m.On("AddResource", &Language{}).Return(qor.AddResource(&Language{})).Once()
+	m.On("AddResource", &Language{}, mock.Anything).Return(
+		qor.AddResource(&Language{})).Once()
 	a.Register(m)
 	m.AssertExpectations(t)
 }

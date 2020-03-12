@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
-	"github.com/webmalc/it-stats-backend/common/mocks"
+	"github.com/webmalc/it-stats-backend/common/logger/mocks"
 )
 
 func newMockLogger() (*Logger, *mocks.BaseLogger) {

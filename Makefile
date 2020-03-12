@@ -1,5 +1,5 @@
 # Go parameters
-.PHONY:  testall test testl testv coverage threshold lint run
+.PHONY:  testall test testl testv coverage threshold lint run depgraph
 GOCMD=go
 GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
@@ -28,8 +28,7 @@ coverage:
 	$(GOCOV)
 
 threshold:
-	go-coverage-threshold -t 90
-
+	overcover --coverprofile coverage.out --threshold 95 --summary
 testl: testv lint
 
 testall: test lint threshold
