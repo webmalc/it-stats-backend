@@ -42,19 +42,28 @@ func setEnv() {
 	viper.AutomaticEnv()
 }
 
-// Setup initializes the main configuration.
-func Setup() {
+// getBaseDir get the base directory
+func getBaseDir() string {
 	_, b, _, ok := runtime.Caller(0)
 	if !ok {
 		panic("config: unable to determine the caller.")
 	}
-	baseDir := filepath.Dir(b)
+	return filepath.Dir(b)
+}
+
+// read reads configuration
+func read() {
+	if err := viper.ReadInConfig(); err != nil {
+		panic(err)
+	}
+}
+
+// Setup initializes the main configuration.
+func Setup() {
+	baseDir := getBaseDir()
 	viper.SetConfigName(getFilename())
 	setPaths(baseDir)
 	setEnv()
 	setDefaults(baseDir)
-
-	if err := viper.ReadInConfig(); err != nil {
-		panic(err)
-	}
+	read()
 }
