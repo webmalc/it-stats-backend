@@ -6,18 +6,18 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/webmalc/it-stats-backend/common/mocks"
+	"github.com/webmalc/it-stats-backend/apps/languages/mocks"
 )
 
 func Test_commands_langs(t *testing.T) {
-	m := &mocks.AddMultipleCommander{}
+	m := &mocks.AdderMultipleCommands{}
 	cmd := newCommands(m)
 	cmd.langs(&cobra.Command{}, make([]string, 0))
 }
 
 // Should add the app commands to the root command.
 func Test_commands_addCommands(t *testing.T) {
-	m := &mocks.AddMultipleCommander{}
+	m := &mocks.AdderMultipleCommands{}
 	cmd := newCommands(m)
 	m.On("AddCommand", mock.Anything).Return(nil).Once()
 	cmd.addCommands()
@@ -26,7 +26,7 @@ func Test_commands_addCommands(t *testing.T) {
 
 // Should create a new commands object.
 func Test_newCommands(t *testing.T) {
-	m := &mocks.AddMultipleCommander{}
+	m := &mocks.AdderMultipleCommands{}
 	cmd := newCommands(m)
 	assert.Equal(t, m, cmd.rootCmd)
 }

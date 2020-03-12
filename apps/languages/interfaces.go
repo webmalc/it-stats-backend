@@ -1,9 +1,14 @@
-package app
+package languages
 
 import (
+	"github.com/jinzhu/gorm"
 	"github.com/qor/admin"
 	"github.com/spf13/cobra"
 )
+
+type autoMigrater interface {
+	AutoMigrate(values ...interface{}) *gorm.DB
+}
 
 // AdderMultipleCommands adds cmd commands to the other command.
 type AdderMultipleCommands interface {
@@ -17,17 +22,13 @@ type AdderAdminResources interface {
 
 // AdminResourcesRegister register admin resources
 type AdminResourcesRegister interface {
-	Register(adm AdderAdminResources)
+	Register(adm interface{ AdderAdminResources })
 }
 
-// CommandsAdder add the app commands
-type CommandsAdder interface {
-	AddCommands(cmd AdderMultipleCommands)
-}
-
-// ResourcesAdder add the app admin resources
-type ResourcesAdder interface {
-	AddAdminResources(admin AdderAdminResources)
+// Admin is the base admin struct
+type Admin struct {
+	ListFields []interface{}
+	EditFields []interface{}
 }
 
 // AdminResource is the admin resource interface.
@@ -37,12 +38,6 @@ type AdminResource interface {
 	NewAttrs(values ...interface{}) []*admin.Section
 	EditAttrs(values ...interface{}) []*admin.Section
 	Filter(filter *admin.Filter)
-}
-
-// Admin is the base admin struct
-type Admin struct {
-	ListFields []interface{}
-	EditFields []interface{}
 }
 
 // RegisterBase register the base admin attrs and filters.

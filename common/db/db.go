@@ -5,7 +5,6 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres" // according to the gorm docs
 	"github.com/pkg/errors"
 	"github.com/qor/validations"
-	"github.com/webmalc/it-stats-backend/common/app"
 )
 
 // Database is the database connection.
@@ -14,7 +13,7 @@ type Database struct {
 }
 
 // RegisterApp register the applications.
-func (d *Database) RegisterApp(a app.Migratable) {
+func (d *Database) RegisterApp(a Migratable) {
 	a.Migrate()
 }
 

@@ -6,13 +6,13 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/webmalc/it-stats-backend/common/mocks"
+	"github.com/webmalc/it-stats-backend/common/cmd/mocks"
 	"github.com/webmalc/it-stats-backend/common/test"
 )
 
 // Should run the root command and log an error.
 func TestCommandRouter_Run(t *testing.T) {
-	m := &mocks.BaseLogger{}
+	m := &mocks.ErrorLogger{}
 	cr := NewCommandRouter(m, &mocks.Runner{})
 	m.On("Error", mock.Anything).Return(nil).Once()
 	cr.Run()
@@ -21,7 +21,7 @@ func TestCommandRouter_Run(t *testing.T) {
 
 // Should create a command router object.
 func TestNewCommandRouter(t *testing.T) {
-	m := &mocks.BaseLogger{}
+	m := &mocks.ErrorLogger{}
 	cr := NewCommandRouter(m, &mocks.Runner{})
 	assert.Equal(t, m, cr.logger)
 	assert.NotNil(t, cr.rootCmd)
@@ -30,7 +30,7 @@ func TestNewCommandRouter(t *testing.T) {
 // Should add the app commands.
 func TestCommandRouter_RegisterApp(t *testing.T) {
 	m := &mocks.CommandsAdder{}
-	cr := NewCommandRouter(&mocks.BaseLogger{}, &mocks.Runner{})
+	cr := NewCommandRouter(&mocks.ErrorLogger{}, &mocks.Runner{})
 	m.On("AddCommands", cr.rootCmd).Return(nil).Once()
 	cr.RegisterApp(m)
 	m.AssertExpectations(t)
@@ -38,7 +38,7 @@ func TestCommandRouter_RegisterApp(t *testing.T) {
 
 func TestCommandRouter_server(t *testing.T) {
 	m := &mocks.Runner{}
-	cr := NewCommandRouter(&mocks.BaseLogger{}, m)
+	cr := NewCommandRouter(&mocks.ErrorLogger{}, m)
 	m.On("Run").Return(nil).Once()
 	m.On("Init").Return(nil).Once()
 	cr.server(&cobra.Command{}, make([]string, 0))

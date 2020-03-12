@@ -2,15 +2,14 @@ package languages
 
 import (
 	"github.com/qor/admin"
-	"github.com/webmalc/it-stats-backend/common/app"
 )
 
 type adminRegister struct {
-	app.Admin
+	Admin
 }
 
 // Register registers admin resources.
-func (a *adminRegister) Register(adm app.AdderAdminResources) {
+func (a *adminRegister) Register(adm interface{ AdderAdminResources }) {
 	langAdmin := adm.AddResource(&Language{})
 	a.RegisterBase(langAdmin)
 	sources := GetLanguageSources()

@@ -8,8 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
-	"github.com/webmalc/it-stats-backend/common/app"
-	"github.com/webmalc/it-stats-backend/common/mocks"
+	"github.com/webmalc/it-stats-backend/common/api/mocks"
 )
 
 // ServerTestSuite is a test suite to run
@@ -93,7 +92,7 @@ func (s *ServerTestSuite) TestNewServer() {
 	a := &mocks.ResourcesAdder{}
 	server := NewServer(s.admin, a)
 	assert.NotNil(s.T(), server.admin)
-	assert.Equal(s.T(), []app.ResourcesAdder{a}, server.apps)
+	assert.Equal(s.T(), []ResourcesAdder{a}, server.apps)
 }
 
 // Runt the test suite

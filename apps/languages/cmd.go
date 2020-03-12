@@ -4,12 +4,11 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	"github.com/webmalc/it-stats-backend/common/app"
 )
 
 // App is the application structure
 type commands struct {
-	rootCmd app.AdderMultipleCommands
+	rootCmd AdderMultipleCommands
 }
 
 // langs gets programming languages.
@@ -29,6 +28,6 @@ func (c *commands) addCommands() {
 }
 
 // newCommands returns a new commads object.
-func newCommands(rootCmd app.AdderMultipleCommands) *commands {
+func newCommands(rootCmd AdderMultipleCommands) *commands {
 	return &commands{rootCmd: rootCmd}
 }

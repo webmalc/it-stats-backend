@@ -5,7 +5,6 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"github.com/qor/admin"
-	"github.com/webmalc/it-stats-backend/common/app"
 )
 
 // Admin is the admin struct.
@@ -14,7 +13,7 @@ type Admin struct {
 }
 
 // RegisterApp register the applications.
-func (a *Admin) RegisterApp(apl app.ResourcesAdder) {
+func (a *Admin) RegisterApp(apl interface{ ResourcesAdder }) {
 	apl.AddAdminResources(a.admin)
 }
 

@@ -9,20 +9,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
 	"github.com/qor/log"
-	"github.com/webmalc/it-stats-backend/common/app"
 )
-
-// AdminRegister is the app register interface
-type AdminRegister interface {
-	RegisterApp(a app.ResourcesAdder)
-	MountTo(mountTo string, mux *http.ServeMux)
-}
 
 // Server is the server object
 type Server struct {
 	config *Config
 	router *gin.Engine
-	apps   []app.ResourcesAdder
+	apps   []ResourcesAdder
 	admin  AdminRegister
 }
 
@@ -80,7 +73,7 @@ func (s *Server) Run() {
 }
 
 // NewServer returns a new admin object.
-func NewServer(admin AdminRegister, apps ...app.ResourcesAdder) *Server {
+func NewServer(admin AdminRegister, apps ...ResourcesAdder) *Server {
 	return &Server{
 		admin:  admin,
 		apps:   apps,

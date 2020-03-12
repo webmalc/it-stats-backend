@@ -1,2 +1,6 @@
 ignore:
-    - "common/mocks"
+    - "common/admin/mocks"
+    - "common/api/mocks"
+    - "common/cmd/mocks"
+    - "common/db/mocks"
+    - "apps/languages/mocks"
