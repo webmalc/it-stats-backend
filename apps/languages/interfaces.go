@@ -33,11 +33,11 @@ type AdminConfig interface {
 
 // AdminResource is the admin resource interface.
 type AdminResource interface {
-	IndexAttrs(values ...interface{}) []*admin.Section
-	ShowAttrs(values ...interface{}) []*admin.Section
 	NewAttrs(values ...interface{}) []*admin.Section
 	EditAttrs(values ...interface{}) []*admin.Section
 	Filter(filter *admin.Filter)
+	IndexAttrs(values ...interface{}) []*admin.Section
+	ShowAttrs(values ...interface{}) []*admin.Section
 }
 
 // AdminMixin is a mixin for applying additional behavior the resource admin

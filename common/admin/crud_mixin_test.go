@@ -12,8 +12,8 @@ func TestCrudMixin_Apply(t *testing.T) {
 	resource := &mocks.AdminResource{}
 	config := &mocks.MixinConfig{}
 
-	config.On("GetListFields").Twice()
-	config.On("GetEditFields").Twice()
+	config.On("GetListFields").Once()
+	config.On("GetEditFields").Once()
 	resource.On("IndexAttrs", mock.Anything).Once()
 	resource.On("ShowAttrs", mock.Anything).Once()
 	resource.On("NewAttrs", mock.Anything).Once()

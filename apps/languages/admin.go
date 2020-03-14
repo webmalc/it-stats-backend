@@ -43,7 +43,7 @@ func (a *adminRegister) Register(adm interface{ AdderAdminResources }) {
 }
 
 func (a *adminRegister) ApplyMixins(
-	resource interface{ AdminResource },
+	resource AdminResource,
 	config AdminConfig,
 ) {
 	for _, mixin := range a.mixins {

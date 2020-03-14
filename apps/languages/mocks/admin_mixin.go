@@ -21,7 +21,8 @@ type AdminMixin struct {
 
 // Apply is method mock
 func (m *AdminMixin) Apply(
-	resource interface{ AdminResource }, config interface{ AdminConfigInterface },
+	resource interface{ AdminResource },
+	config interface{ AdminConfigInterface },
 ) {
 	m.Called(resource, config)
 }
