@@ -5,13 +5,31 @@ import (
 )
 
 type adminRegister struct {
-	Admin
+	mixins []AdminMixin
+}
+
+type config struct {
+	listFields []interface{}
+	editFields []interface{}
+}
+
+func (c *config) GetListFields() []interface{} {
+	return c.listFields
+}
+
+func (c *config) GetEditFields() []interface{} {
+	return c.editFields
 }
 
 // Register registers admin resources.
 func (a *adminRegister) Register(adm interface{ AdderAdminResources }) {
 	langAdmin := adm.AddResource(&Language{})
-	a.RegisterBase(langAdmin)
+	a.ApplyMixins(langAdmin, &config{
+		listFields: []interface{}{
+			"ID", "Title", "Position", "Source", "CreatedAt", "UpdatedAt",
+		},
+		editFields: []interface{}{"Title", "Position", "Source"},
+	})
 	sources := GetLanguageSources()
 
 	langAdmin.Meta(&admin.Meta{
@@ -24,13 +42,16 @@ func (a *adminRegister) Register(adm interface{ AdderAdminResources }) {
 	})
 }
 
-// newAdmin returns a new admin object.
-func newAdmin() *adminRegister {
-	adm := &adminRegister{}
-	adm.ListFields = []interface{}{
-		"ID", "Title", "Position", "Source", "CreatedAt", "UpdatedAt",
+func (a *adminRegister) ApplyMixins(
+	resource interface{ AdminResource },
+	config AdminConfig,
+) {
+	for _, mixin := range a.mixins {
+		mixin.Apply(resource, config)
 	}
-	adm.EditFields = []interface{}{"Title", "Position", "Source"}
+}
 
-	return adm
+// newAdmin returns a new admin object.
+func newAdmin(mixins ...AdminMixin) *adminRegister {
+	return &adminRegister{mixins: mixins}
 }

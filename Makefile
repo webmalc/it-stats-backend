@@ -1,9 +1,10 @@
 # Go parameters
-.PHONY:  testall test testl testv coverage threshold lint run depgraph
+.PHONY:  testall test testl testv coverage threshold lint run depgraph server
 GOCMD=go
 GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
 GORUN=$(GOCMD) run .
+SERVER=$(GORUN) server
 GOCOV=$(GOCMD) tool cover -html=coverage.out
 GOTEST=$(GOCMD) test -tags test
 GOGET=$(GOCMD) get
@@ -26,6 +27,9 @@ depgraph:
 
 coverage:
 	$(GOCOV)
+
+server:
+	$(SERVER)
 
 threshold:
 	overcover --coverprofile coverage.out --threshold 95 --summary

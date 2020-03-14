@@ -23,6 +23,6 @@ func (a *App) AddAdminResources(adm interface{ AdderAdminResources }) {
 }
 
 // NewApp returns a new app object.
-func NewApp(conn autoMigrater) *App {
-	return &App{db: conn, admin: newAdmin()}
+func NewApp(conn autoMigrater, mixins ...AdminMixin) *App {
+	return &App{db: conn, admin: newAdmin(mixins...)}
 }

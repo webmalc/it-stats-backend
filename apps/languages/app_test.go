@@ -49,8 +49,9 @@ func TestApp_AddAdminResources(t *testing.T) {
 
 func TestNewApp(t *testing.T) {
 	conn := db.NewConnection()
+	mixin := &mocks.AdminMixin{}
 	defer conn.Close()
-	app := NewApp(conn)
+	app := NewApp(conn, mixin)
 	assert.Equal(t, conn, app.db)
 	assert.NotNil(t, app.admin)
 }

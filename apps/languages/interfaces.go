@@ -25,10 +25,10 @@ type AdminResourcesRegister interface {
 	Register(adm interface{ AdderAdminResources })
 }
 
-// Admin is the base admin struct
-type Admin struct {
-	ListFields []interface{}
-	EditFields []interface{}
+// AdminConfig is a resource admin configuration
+type AdminConfig interface {
+	GetListFields() []interface{}
+	GetEditFields() []interface{}
 }
 
 // AdminResource is the admin resource interface.
@@ -40,12 +40,7 @@ type AdminResource interface {
 	Filter(filter *admin.Filter)
 }
 
-// RegisterBase register the base admin attrs and filters.
-func (a *Admin) RegisterBase(resource AdminResource) {
-	resource.IndexAttrs(a.ListFields...)
-	resource.ShowAttrs(a.ListFields...)
-	resource.NewAttrs(a.EditFields...)
-	resource.EditAttrs(a.EditFields...)
-	resource.Filter(&admin.Filter{Name: "CreatedAt"})
-	resource.Filter(&admin.Filter{Name: "UpdatedAt"})
+// AdminMixin is a mixin for applying additional behavior the resource admin
+type AdminMixin interface {
+	Apply(interface{ AdminResource }, interface{ AdminConfig })
 }
