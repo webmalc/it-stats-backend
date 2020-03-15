@@ -16,7 +16,7 @@ func (m *CrudMixin) Apply(
 }
 
 func (m *CrudMixin) setListFields(
-	resource Resource,
+	resource ResourceIndexAdder,
 	fields []interface{},
 ) {
 	resource.IndexAttrs(fields...)
@@ -24,14 +24,14 @@ func (m *CrudMixin) setListFields(
 }
 
 func (m *CrudMixin) setEditFields(
-	resource Resource,
+	resource ResourceEditAdder,
 	fields []interface{},
 ) {
 	resource.NewAttrs(fields...)
 	resource.EditAttrs(fields...)
 }
 
-func (m *CrudMixin) setFilters(resource Resource) {
+func (m *CrudMixin) setFilters(resource ResourceFilterAdder) {
 	resource.Filter(&admin.Filter{Name: "CreatedAt"})
 	resource.Filter(&admin.Filter{Name: "UpdatedAt"})
 }

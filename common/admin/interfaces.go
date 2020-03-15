@@ -7,13 +7,28 @@ type AdderAdminResources interface {
 	AddResource(value interface{}, config ...*admin.Config) *admin.Resource
 }
 
-// Resource is the admin resource interface.
-type Resource interface {
+// ResourceIndexAdder adds index and show attributes
+type ResourceIndexAdder interface {
 	IndexAttrs(values ...interface{}) []*admin.Section
 	ShowAttrs(values ...interface{}) []*admin.Section
+}
+
+// ResourceEditAdder adds new and edit attributes
+type ResourceEditAdder interface {
 	NewAttrs(values ...interface{}) []*admin.Section
 	EditAttrs(values ...interface{}) []*admin.Section
+}
+
+// ResourceFilterAdder adds filters
+type ResourceFilterAdder interface {
 	Filter(filter *admin.Filter)
+}
+
+// Resource is the admin resource interface.
+type Resource interface {
+	ResourceIndexAdder
+	ResourceEditAdder
+	ResourceFilterAdder
 }
 
 // ResourcesAdder add the app admin resources

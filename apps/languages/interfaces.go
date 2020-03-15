@@ -31,8 +31,6 @@ type AdminConfig interface {
 	GetEditFields() []interface{}
 }
 
-// codebeat:disable[ABC]
-
 // AdminResource is the admin resource interface.
 type AdminResource interface {
 	IndexAttrs(values ...interface{}) []*admin.Section
@@ -41,8 +39,6 @@ type AdminResource interface {
 	EditAttrs(values ...interface{}) []*admin.Section
 	Filter(filter *admin.Filter)
 }
-
-// codebeat:enable[ABC]
 
 // AdminMixin is a mixin for applying additional behavior the resource admin
 type AdminMixin interface {
