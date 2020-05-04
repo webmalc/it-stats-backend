@@ -16,7 +16,7 @@ func main() {
 	config.Setup()
 	log := logger.NewLogger()
 	conn := db.NewConnection()
-	langApp := languages.NewApp(conn, &admin.CrudMixin{})
+	langApp := languages.NewApp(conn, log, &admin.CrudMixin{})
 	adm := admin.NewAdmin(conn.DB)
 	server := api.NewServer(adm, langApp)
 	cmdRouter := cmd.NewCommandRouter(log, server)

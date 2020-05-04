@@ -44,3 +44,13 @@ type AdminResource interface {
 type AdminMixin interface {
 	Apply(interface{ AdminResource }, interface{ AdminConfig })
 }
+
+type Scrapper interface {
+	Scrap() ([]*Language, error)
+}
+
+// Logger logs errors and info.
+type Logger interface {
+	Infof(format string, args ...interface{})
+	Error(args ...interface{})
+}

@@ -2,8 +2,9 @@ package languages
 
 // App is the application structure.
 type App struct {
-	db    autoMigrater
-	admin AdminResourcesRegister
+	db     autoMigrater
+	admin  AdminResourcesRegister
+	logger Logger
 }
 
 // Migrate does the app migrations.
@@ -13,7 +14,7 @@ func (a *App) Migrate() {
 
 // AddCommands adds the app cmd commands.
 func (a *App) AddCommands(rootCmd interface{ AdderMultipleCommands }) {
-	cmd := newCommands(rootCmd)
+	cmd := newCommands(a.logger, rootCmd)
 	cmd.addCommands()
 }
 
@@ -23,6 +24,6 @@ func (a *App) AddAdminResources(adm interface{ AdderAdminResources }) {
 }
 
 // NewApp returns a new app object.
-func NewApp(conn autoMigrater, mixins ...AdminMixin) *App {
-	return &App{db: conn, admin: newAdmin(mixins...)}
+func NewApp(conn autoMigrater, logger Logger, mixins ...AdminMixin) *App {
+	return &App{db: conn, logger: logger, admin: newAdmin(mixins...)}
 }

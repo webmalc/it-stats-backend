@@ -1,19 +1,19 @@
 package languages
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
 // App is the application structure
 type commands struct {
 	rootCmd AdderMultipleCommands
+	logger  Logger
 }
 
 // langs gets programming languages.
 func (c *commands) langs(cmd *cobra.Command, args []string) {
-	fmt.Println("langs")
+	s := NewScrapperRunner(c.logger)
+	s.Run()
 }
 
 // addCommands adds the app cmd commands.
@@ -28,6 +28,6 @@ func (c *commands) addCommands() {
 }
 
 // newCommands returns a new commads object.
-func newCommands(rootCmd AdderMultipleCommands) *commands {
-	return &commands{rootCmd: rootCmd}
+func newCommands(logger Logger, rootCmd AdderMultipleCommands) *commands {
+	return &commands{logger: logger, rootCmd: rootCmd}
 }
