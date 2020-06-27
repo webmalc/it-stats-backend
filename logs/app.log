@@ -1,0 +1,16 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] POST   /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] PUT    /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] PATCH  /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] HEAD   /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] OPTIONS /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] DELETE /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] CONNECT /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] TRACE  /admin/*resources         --> github.com/gin-gonic/gin.WrapH.func1 (5 handlers)
+[GIN-debug] Listening and serving HTTP on localhost:8080

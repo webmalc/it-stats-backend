@@ -23,7 +23,7 @@ func getFilename() string {
 
 // setDefaults sets default values
 func setDefaults(baseDir string) {
-	viper.Set("base_dir", filepath.Dir(baseDir)+"/")
+	viper.Set("base_dir", filepath.Dir(filepath.Dir(baseDir))+"/")
 	viper.SetDefault("is_prod", false)
 	viper.SetDefault("log_path", "logs/app.log")
 }

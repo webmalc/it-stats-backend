@@ -23,5 +23,5 @@ config/*.yml
 !config/config.test.yml
 *.app
 
-common/logs/*
-!common/logs/.gitkeep
+*/logs/*
+!*/logs/.gitkeep
